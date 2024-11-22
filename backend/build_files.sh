@@ -1,3 +1,3 @@
 pip3 install -r requirements.txt
-python3.9 manage.py migrate
-python3.9 manage.py collectstatic
+python3.12 manage.py migrate
+python3.12 manage.py collectstatic
