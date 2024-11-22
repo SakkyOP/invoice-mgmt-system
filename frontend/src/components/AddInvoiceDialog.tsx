@@ -52,7 +52,7 @@ export default function AddInvoiceDialog({ isOpen, onClose, onAddInvoice }: AddI
   
   const handleSubmit = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL ?? ""}/api/invoices/`, {
+      const response = await fetch(`${import.meta.env.VITE_VITE_BACKEND_URL?? ""}/api/invoices/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,15 +64,6 @@ export default function AddInvoiceDialog({ isOpen, onClose, onAddInvoice }: AddI
           details,
         }),
       })
-      console.log(
-        {
-          invoice_number: invoiceNumber,
-          customer_name: customerName,
-          date,
-          details,
-        }
-      );
-      
       if (!response.ok) {
         throw new Error('Failed to add invoice')
       }
