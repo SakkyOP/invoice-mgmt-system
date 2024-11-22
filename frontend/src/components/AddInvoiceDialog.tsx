@@ -48,10 +48,10 @@ export default function AddInvoiceDialog({ isOpen, onClose, onAddInvoice }: AddI
     newDetails[index][field] = value
     setDetails(newDetails)
   }
-
+  
   const handleSubmit = async () => {
     try {
-      const response = await fetch(`${import.meta.env.BACKEND_URL ?? "http://localhost:8000"}/api/invoices/`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL ?? "http://localhost:8000"}/api/invoices/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

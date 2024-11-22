@@ -32,7 +32,7 @@ export default function InvoiceDialog({ invoice, onClose }: InvoiceDialogProps) 
 
   const fetchInvoiceDetails = async () => {
     try {
-      const response = await fetch(`${import.meta.env.BACKEND_URL?? "http://localhost:8000"}/api/invoices/${invoice.id}/details/`)
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL?? "http://localhost:8000"}/api/invoices/${invoice.id}/details/`)
       const data = await response.json()
       const formattedData = data.map((detail: any) => ({
       ...detail,

@@ -52,7 +52,7 @@ export default function InvoiceTable() {
   const fetchInvoices = async (page: number) => {
     try {
       const queryParams = new URLSearchParams({ page: page.toString(), ...filters })
-      const response = await fetch(`${import.meta.env.BACKEND_URL?? "http://localhost:8000"}/api/invoices/?${queryParams}`)
+      const response = await fetch(`${import.meta.env.VITE_VITE_BACKEND_URL?? "http://localhost:8000"}/api/invoices/?${queryParams}`)
       if (!response.ok) {
         throw new Error('Failed to fetch invoices')
       }
@@ -70,7 +70,7 @@ export default function InvoiceTable() {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await fetch(`${import.meta.env.BACKEND_URL?? "http://localhost:8000"}/api/invoices/${id}/`, { method: 'DELETE' })
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL?? "http://localhost:8000"}/api/invoices/${id}/`, { method: 'DELETE' })
       if (!response.ok) {
         throw new Error('Failed to delete invoice')
       }
