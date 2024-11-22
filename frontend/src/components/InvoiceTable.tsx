@@ -70,7 +70,7 @@ export default function InvoiceTable() {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL?? ""}/api/invoices/${id}/`, { method: 'DELETE' })
+      const response = await fetch(`${import.meta.env.VIT_VITE_BACKEND_URL?? ""}/api/invoices/${id}/`, { method: 'DELETE' })
       if (!response.ok) {
         throw new Error('Failed to delete invoice')
       }

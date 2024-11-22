@@ -153,7 +153,7 @@ export default function AddInvoiceDialog({ isOpen, onClose, onAddInvoice }: AddI
                 </div>
                 {index > 0 && (
                   <Button variant="ghost" size="icon" onClick={() => handleRemoveDetail(index)}>
-                    -
+                    ❌
                   </Button>
                 )}
               </div>
