@@ -1,5 +1,6 @@
 "use client"
 
+import { formatISO } from 'date-fns'
 import { useState } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
@@ -59,10 +60,19 @@ export default function AddInvoiceDialog({ isOpen, onClose, onAddInvoice }: AddI
         body: JSON.stringify({
           invoice_number: invoiceNumber,
           customer_name: customerName,
-          date,
+          date: formatISO(date??"", {representation: "date"}),
           details,
         }),
       })
+      console.log(
+        {
+          invoice_number: invoiceNumber,
+          customer_name: customerName,
+          date,
+          details,
+        }
+      );
+      
       if (!response.ok) {
         throw new Error('Failed to add invoice')
       }
