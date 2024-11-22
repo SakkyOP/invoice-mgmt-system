@@ -1,4 +1,4 @@
-from rest_framework.response import Response
+from django.http import HttpResponse
 
 def hello_world_view(request):
-    return Response("hello world!")
+    return HttpResponse("<h1>Sever is running!</h1>")
