@@ -74,7 +74,7 @@ export default function EditInvoiceDialog({ invoice, onClose, onUpdate }: EditIn
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL ?? "http://localhost:8000"}/api/invoices/${invoice.id}/`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL ?? ""}/api/invoices/${invoice.id}/`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

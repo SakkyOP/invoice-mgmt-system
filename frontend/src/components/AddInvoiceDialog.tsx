@@ -52,7 +52,7 @@ export default function AddInvoiceDialog({ isOpen, onClose, onAddInvoice }: AddI
   
   const handleSubmit = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL ?? "http://localhost:8000"}/api/invoices/`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL ?? ""}/api/invoices/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
