@@ -9,10 +9,10 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DJANGO_SETTINGS_MODULE=backend.settings
-      - FRONTEND_URL=http://localhost:5173
-      - DEV=False
-      - SECRET_KEY=django-insecure-xn)s-mw1fhyq372a4l0^0y664n43_41b@+0p!rn6=e8+4shah+
+      DJANGO_SETTINGS_MODULE: backend.settings
+      FRONTEND_URL: http://localhost:5173/
+      DEV: "False"
+      SECRET_KEY: django-insecure-xn)s-mw1fhyq372a4l0^0y664n43_41b@+0p!rn6=e8+4shah+
     volumes:
       - ./backend:/app
 
@@ -24,6 +24,6 @@ services:
     ports:
       - "5173:5173"
     environment:
-      - BACKEND_URL=http://localhost:8000
+      BACKEND_URL: http://localhost:8000/
     volumes:
       - ./frontend:/app
