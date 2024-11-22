@@ -5,7 +5,7 @@ from django.utils.timezone import now
 class Invoice(models.Model):
     invoice_number = models.CharField(max_length=50, unique=True, db_index=True)
     customer_name = models.CharField(max_length=100, db_index=True)
-    date = models.DateField(default=now().date)
+    date = models.DateField(default=now)
 
     def __str__(self):
         return f"Invoice {self.invoice_number} - {self.customer_name}"

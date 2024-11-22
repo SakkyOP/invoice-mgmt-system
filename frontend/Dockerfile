@@ -20,4 +20,4 @@ RUN npm run build
 EXPOSE 4173
 
 # Serve the built files in preview mode
-CMD ["npm", "run", "preview"]
+CMD ["npm", "run", "dev"]

@@ -27,3 +27,8 @@ services:
       BACKEND_URL: http://localhost:8000/
     volumes:
       - ./frontend:/app
+      - node_modules_cached_frontend:/app/node_modules
+  
+volumes:
+  node_modules_cached_frontend:
+    
