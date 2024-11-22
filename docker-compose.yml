@@ -11,8 +11,7 @@ services:
     environment:
       DJANGO_SETTINGS_MODULE: backend.settings
       FRONTEND_URL: http://localhost:5173/
-      DEV: "False"
-      SECRET_KEY: django-insecure-xn)s-mw1fhyq372a4l0^0y664n43_41b@+0p!rn6=e8+4shah+
+      DEV: "True"
     volumes:
       - ./backend:/app
 
@@ -31,4 +30,3 @@ services:
   
 volumes:
   node_modules_cached_frontend:
-    
