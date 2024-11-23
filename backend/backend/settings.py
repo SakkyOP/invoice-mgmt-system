@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-xn)s-mw1fhyq372a4l0^0y664n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'localhost', 'now.sh']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'localhost']
 
 # Application definition
 
@@ -60,11 +60,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-print(os.getenv('FRONTEND_URL', 'http://localhost:5173'))
-
-CORS_ALLOW_ORIGINS = [
+CORS_ALLOWED_ORIGINS = [
     os.getenv('FRONTEND_URL', 'http://localhost:5173'),
 ]
+
+
 
 CORS_ALLOW_ALL_ORIGINS = True if os.getenv('DEV', "True") == "True" else False
 

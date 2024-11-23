@@ -10,8 +10,9 @@ services:
       - "8000:8000"
     environment:
       DJANGO_SETTINGS_MODULE: backend.settings
-      FRONTEND_URL: http://localhost:5173/
-      DEV: "True"
+      FRONTEND_URL: http://localhost:5173
+      SUPABASE_DB_URL: postgresql://postgres.mwqbzozwwgmiblerklhy:89g7dNARj@dpg-Q@aws-0-ap-south-1.pooler.supabase.com:6543/postgres
+      DEV: False
     volumes:
       - ./backend:/app
 
@@ -23,7 +24,7 @@ services:
     ports:
       - "5173:5173"
     environment:
-      VITE_BACKEND_URL: http://localhost:8000/
+      VITE_VITE_BACKEND_URL: http://localhost:8000
     volumes:
       - ./frontend:/app
       - node_modules_cached_frontend:/app/node_modules
