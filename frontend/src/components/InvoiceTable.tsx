@@ -10,6 +10,7 @@ import Pagination from './Pagination'
 import { useTheme } from "next-themes"
 import { Moon, Sun, Filter, Plus, RefreshCcw, MoreVertical } from 'lucide-react'
 import FilterDialog from './FilterDialog'
+import { SkeletonLoader } from './SkeletonLoader'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -44,12 +45,14 @@ export default function InvoiceTable() {
   const [filters, setFilters] = useState({})
   const { setTheme, theme } = useTheme()
   const [error, setError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     fetchInvoices(currentPage)
   }, [currentPage, filters])
 
   const fetchInvoices = async (page: number) => {
+    setIsLoading(true)
     try {
       const queryParams = new URLSearchParams({ page: page.toString(), ...filters })
       const response = await fetch(`${import.meta.env.VITE_VITE_BACKEND_URL?? ""}/api/invoices/?${queryParams}`)
@@ -61,6 +64,8 @@ export default function InvoiceTable() {
       setTotalPages(invoices.length>0 ? Math.ceil(data.count / invoices.length) : 1)
     } catch (error) {
       setError('Error fetching invoices. Please try again.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -147,24 +152,28 @@ export default function InvoiceTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {invoices.map((invoice) => (
-              <TableRow key={invoice.id} onClick={() => setSelectedInvoice(invoice)} className="cursor-pointer">
-                <TableCell>{invoice.invoice_number}</TableCell>
-                <TableCell>{invoice.customer_name}</TableCell>
-                <TableCell>{invoice.date}</TableCell>
-                <TableCell>
-                  <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); handleEdit(invoice) }}>
-                    ✏️
-                  </Button>
-                  <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); handleDelete(invoice.id) }}>
-                    🗑️
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+          {isLoading ? (
+              <SkeletonLoader />
+            ) : (
+              invoices.map((invoice) => (
+                <TableRow key={invoice.id} onClick={() => setSelectedInvoice(invoice)} className="cursor-pointer">
+                  <TableCell>{invoice.invoice_number}</TableCell>
+                  <TableCell>{invoice.customer_name}</TableCell>
+                  <TableCell>{invoice.date}</TableCell>
+                  <TableCell>
+                    <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); handleEdit(invoice) }}>
+                      ✏️
+                    </Button>
+                    <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); handleDelete(invoice.id) }}>
+                      🗑️
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
           </TableBody>
         </Table>
-        {invoices.length === 0 && (
+        {!isLoading && invoices.length === 0 && (
           <div className="text-center py-4">
             No invoices found. Try adjusting your filters or add a new invoice.
           </div>
